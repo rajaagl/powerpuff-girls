@@ -2,7 +2,7 @@
 
 une petite application web afficht des informations sur la série télévisée “Powerpuff Girls” et ses épisodes, en utilisant l’API TV Maze (http://www.tvmaze.com/api).
 
-## 📋 Fonctionnalités
+## Fonctionnalités
 
 - **Page Série** : Affiche le titre, la description et l'image de couverture de la série
 - **Liste des Épisodes** : Affiche tous les épisodes 
@@ -10,7 +10,7 @@ une petite application web afficht des informations sur la série télévisée �
 - **Navigation fluide** : Barre de navigation avec logo et liens vers les pages principales (serie,episodes)
 - **Design responsive** : Interface adaptée aux mobiles, tablettes et ordinateurs
 
-## 🚀 Technologies Utilisées
+## Technologies Utilisées
 
 - React 
 - TypeScript 
@@ -18,7 +18,7 @@ une petite application web afficht des informations sur la série télévisée �
 - Tailwind CSS 
 - React Router DOM 
 
-## 📦 Installation
+##  Installation
 
 # 1. Cloner le repository
 git clone https://github.com/rajaagl/powerpuff-girls.git
