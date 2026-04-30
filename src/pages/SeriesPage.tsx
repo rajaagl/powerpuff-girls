@@ -1,14 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 
-interface Episode {
-  id: number;
-  name: string;
-  season: number;
-  number: number;
-  image: { medium: string } | null;
-  summary: string;
-}
 
 interface Serie {
   id: number;
@@ -19,24 +10,23 @@ interface Serie {
 
 function SeriesPage() {
   const [serie, setSerie] = useState<Serie | null>(null);
-  const [episodes, setEpisodes] = useState<Episode[]>([]);
   const [loading, setLoading] = useState(true);
+
 //useEffect pour extraire les données de la série et des épisodes depuis l'API TVMaze
+
   useEffect(() => {
     fetch('https://api.tvmaze.com/shows/1955')
       .then(res => res.json())
-      .then(data => setSerie(data))
-      //affichage de l'erreur dans la console (serie)
-      .catch(err => console.error(err));
-
-    fetch('https://api.tvmaze.com/shows/1955/episodes')
-      .then(res => res.json())
       .then(data => {
-        setEpisodes(data);
+        setSerie(data);
         setLoading(false);
       })
-        //affichage de l'erreur dans la console (episodes)
-      .catch(err => console.error(err));
+      //affichage de l'erreur dans la console (serie)
+      .catch(err => {
+        console.error(err);
+        setLoading(false);
+      });
+
   }, []);
   // en cas de chargement, on affiche un message de chargement
   if (loading) {

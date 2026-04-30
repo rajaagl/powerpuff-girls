@@ -43,7 +43,7 @@ function EpisodePage() {
         ← Retour à la série
       </Link>
       
-      <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+      <div className="bg-blue-400 rounded-lg shadow-lg overflow-hidden">
         {episode.image && (
           <img 
             src={episode.image.medium} 
