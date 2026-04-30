@@ -1,4 +1,4 @@
-# Powerpuff Girls - TV Series Explorer
+# Powerpuff Girls - TV Series 
 
 une petite application web afficht des informations sur la série télévisée “Powerpuff Girls” et ses épisodes, en utilisant l’API TV Maze (http://www.tvmaze.com/api).
 
