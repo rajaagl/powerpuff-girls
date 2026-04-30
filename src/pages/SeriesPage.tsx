@@ -48,10 +48,10 @@ function SeriesPage() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-10">
+    <div className="max-w-7xl mx-auto px-6 mt-10 py-10">
       {serie && (
         <>
-          <div className="flex flex-col md:flex-row gap-8 mb-12">
+          <div className="flex flex-col mt-10  md:flex-row gap-8 mb-12">
             <img 
               src={serie.image?.medium} 
               alt={serie.name}

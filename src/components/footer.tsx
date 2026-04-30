@@ -3,8 +3,8 @@ import logo from '../assets/powerpuffgirlslogo.png'
 
 function Footer() {
   return (
-    <footer className="border-t border-gray-200 bg-white mt-10">
-      <div className="max-w-7xl mx-auto px-6 py-10">
+    <footer className="border-t border-green-400 bg-green-400 mt-10">
+      <div className="max-w-7xl mx-auto px-6 py-10 ">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="flex flex-col sm:flex-row sm:items-center gap-6">
              <img 
@@ -20,7 +20,7 @@ function Footer() {
                <Link to="/episodes" className="text-sm text-gray-600 hover:text-pink-500">Épisodes</Link>
             </div>
           </div>
-          <div className="text-xs text-gray-400">
+          <div className="text-xs text-gray-600">
             © 2026 Powerpuff Girls App
           </div>
         </div>
