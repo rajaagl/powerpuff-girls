@@ -18,20 +18,12 @@ function Navbar() {
               Powerpuff Girls
             </span>
           </Link>
-
-          {/* Liens de navigation */}
           <div className="flex gap-6">
             <Link 
               to="/" 
               className="text-white font-bold text-xl"
             >
               Série
-            </Link>
-            <Link 
-              to="/episodes" 
-              className="text-white font-bold text-xl"
-            >
-              Épisodes
             </Link>
           </div>
 

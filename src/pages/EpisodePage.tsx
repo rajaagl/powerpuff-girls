@@ -1,31 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import {useGetEpisodeByIdQuery} from '../app/store.ts'
 
-interface Episode {
-  id: number;
-  name: string;
-  season: number;
-  number: number;
-  image: { medium: string } | null;
-  summary: string;
-}
 
 function EpisodePage() {
-  const { id } = useParams();
-  const [episode, setEpisode] = useState<Episode | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch(`https://api.tvmaze.com/episodes/${id}`)
-      .then(res => res.json())
-      .then(data => {
-        setEpisode(data);
-        setLoading(false);
-      })
-      .catch(err => console.error(err));
-  }, [id]);
-
-  if (loading) {
+  const { data: episodeByIdData ,loading: episodeByIdLoading ,erreur: episodeByIdError} = useGetEpisodeByIdQuery(1);
+  
+  if (episodeByIdLoading) {
     return (
       <div className="flex justify-center items-center h-64">
         <p className="text-gray-500">Chargement...</p>
@@ -33,7 +14,7 @@ function EpisodePage() {
     );
   }
 
-  if (!episode) {
+  if (!episodeByIdData) {
     return <p className="text-center text-red-500">Épisode non trouvé</p>;
   }
 
@@ -44,20 +25,20 @@ function EpisodePage() {
       </Link>
       
       <div className="bg-blue-400 rounded-lg shadow-lg overflow-hidden">
-        {episode.image && (
+        {episodeByIdData.image && (
           <img 
-            src={episode.image.medium} 
-            alt={episode.name}
+            src={episodeByIdData.image.medium} 
+            alt={episodeByIdData.name}
             className="w-full h-64 object-cover"
           />
         )}
         <div className="p-6">
           <h1 className="text-2xl font-bold text-gray-800 mb-2">
-            S{episode.season} E{episode.number} - {episode.name}
+            S{episodeByIdData.season} E{episodeByIdData.number} - {episodeByIdData.name}
           </h1>
           <div 
             className="text-gray-700 mt-4"
-            dangerouslySetInnerHTML={{ __html: episode.summary }}
+            dangerouslySetInnerHTML={{ __html: episodeByIdData.summary }}
           />
         </div>
       </div>
