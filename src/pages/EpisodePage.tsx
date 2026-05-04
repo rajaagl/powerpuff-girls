@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import {useGetEpisodeByIdQuery} from '../app/store.ts'
 
 
 function EpisodePage() {
-  const { data: episodeByIdData ,loading: episodeByIdLoading ,erreur: episodeByIdError} = useGetEpisodeByIdQuery(1);
+  const { data: episodeByIdData ,isLoading : episodeByIdLoading } = useGetEpisodeByIdQuery(1);
   
   if (episodeByIdLoading) {
     return (

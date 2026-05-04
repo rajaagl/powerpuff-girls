@@ -1,13 +1,11 @@
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {useGetSeriesQuery, useGetEpisodesQuery} from '../app/store.ts'
 
 
 
-
 function SeriesPage() {
-  const { data: serieData, loading: serieLoading } = useGetSeriesQuery();
-  const { data: episodesData, loading: episodesLoading } = useGetEpisodesQuery(); 
+  const { data: serieData, isLoading: serieLoading } = useGetSeriesQuery();
+  const { data: episodesData, isLoading: episodesLoading } = useGetEpisodesQuery();
 
   // en cas de chargement, on affiche un message de chargement
   if (serieLoading || episodesLoading ) {
@@ -20,7 +18,7 @@ function SeriesPage() {
 
   return (
   <div className="max-w-7xl mx-auto px-6 mt-10 py-10">
-    {serieData && (
+    { serieData && (
       <div className="flex flex-col mt-10 md:flex-row gap-8 mb-12">
         <img 
           src={serieData.image?.medium} 
@@ -40,20 +38,35 @@ function SeriesPage() {
     <h1 className="text-3xl text-center font-bold text-pink-500 mb-6">
       Tous les épisodes
     </h1>
-    
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 font-bold">
-      {episodesData ? episodesData.map(ep => (
-        <div key={ep.id} className='border-b-blue-500 p-3 bg-blue-400 rounded-lg shadow-md text-center'>
-          <Link to={`/episode/${ep.id}`}>
-            S{ep.season} - E{ep.number} - {ep.name}
-          </Link>
+    <div className="relative overflow-hidden">
+       <div className="flex gap-3 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-2
+                  scrollbar-hide [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+     {episodesData?.map((episode) => (
+      <div
+        key={episode.id}
+        className="flex-none w-36 sm:w-40 snap-start bg-blue-400 rounded-lg shadow overflow-hidden"
+      >
+        {episode.image && (
+            <img
+              src={episode.image.medium}
+              alt={episode.name}
+              className="w-full h-24 object-cover"
+            />
+        )}
+        <div className="p-2">
+          <div className="text-xs font-bold text-white">
+            <Link to={`/episode/${episode.id}`}>
+              S{episode.season} - E{episode.number}
+            </Link>
+          </div>
+          <div className="text-white text-xs truncate">{episode.name}</div>
         </div>
-      )) : (
-        <p className="text-center text-gray-500">Aucun épisode disponible</p>
-      )}
-    </div>
+      </div>
+    ))}
+     </div>
+  </div> 
   </div>
-);
+  );
 }
 
 export default SeriesPage;
