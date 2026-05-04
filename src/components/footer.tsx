@@ -17,7 +17,6 @@ function Footer() {
             </Link>
             <div className="flex gap-6">
                <Link to="/" className="text-sm text-gray-600 hover:text-pink-500">Série</Link>
-               <Link to="/episodes" className="text-sm text-gray-600 hover:text-pink-500">Épisodes</Link>
             </div>
           </div>
           <div className="text-xs text-gray-600">
